@@ -1,0 +1,13 @@
+.container{	
+	position: relative;
+	max-width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 5px;
+}
+    
+.selector, .right{
+	  flex: 1;
+}

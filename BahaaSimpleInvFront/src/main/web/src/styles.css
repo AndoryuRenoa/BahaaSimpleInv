@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+
+html { 
+}
+
+body {
+    font-family: 'Open Sans Condensed', arial, sans;
+    margin: 0;
+    background-size: cover;
+    height: 100%;
+    background-color: darkslategray;
+  }
+  
+  .menuOption:hover{
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+  }
+  
+  .formStyle{
+    font-family: 'Open Sans Condensed', arial, sans;
+    max-width: 500px;
+    padding: 30px;
+    background: #FFFFFF;
+    margin: 50px auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+  
+  }
+  .formStyle h2{
+    background: #4D4D4D;
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #797979;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 20px;
+    margin: -30px -30px 30px -30px;
+  }
+  .formStyle input[type="text"],
+  .formStyle input[type="password"],
+  .formStyle textarea,
+  .formStyle select 
+  {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+  }
+  .formStyle textarea{
+    resize:none;
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 600px) {
+    .mobileScale{
+        transform: scale(.8);
+        -webkit-transform: scale(.8);
+        -moz-transform: scale(.8);
+    }
+    .mochiFace{
+      min-width: 50%; 
+      height: auto;
+    }
+  }
+    .aboutStyle{
+      font-family: 'Open Sans Condensed', arial, sans;
+      max-width: 500px;
+      padding: 30px;
+      background: #FFFFFF;
+      margin: 5px auto;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+      -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+      -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+    
+    }
+    .aboutStyle h2{
+      background: #4D4D4D;
+      text-transform: uppercase;
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #797979;
+      font-size: 18px;
+      font-weight: 100;
+      padding: 20px;
+      margin: -30px -30px 30px -30px;
+    }
