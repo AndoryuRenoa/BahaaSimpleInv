@@ -10,6 +10,11 @@ import { Router } from '@angular/router';
 export class MessangerService {
   private messageURL = "/api/newReceiving"
   private unableToSendMessage = new Subject<boolean>();
+  private messageSent = new Subject<boolean>();
+  private submitted = new Subject<boolean>();
+  private vendor = new Subject<String>();
+  
+  
 
   constructor(private http : HttpClient, private router: Router) { }
 
@@ -22,9 +27,13 @@ export class MessangerService {
     if (!(res == "success!")){
       this.setUnableToSendMessage(true);
     } else{
+      this.setMessageSent(true);
+      this.setSubmitted(false);
       this.router.navigate(['/']);
     }
     });
+    this.setMessageSent(true);
+    this.setSubmitted(false);
 
     return callback && callback();
 
@@ -38,4 +47,26 @@ export class MessangerService {
   getUnableToSendMessage(){
     return this.unableToSendMessage.asObservable();
   }
+  setMessageSent (unableToSendMessage: boolean){
+    this.messageSent.next(unableToSendMessage);
+  }
+
+  getMessageSent(){
+    return this.messageSent.asObservable();
+  }
+  setSubmitted (unableToSendMessage: boolean){
+    this.submitted.next(unableToSendMessage);
+  }
+
+  getSubmitted(){
+    return this.submitted.asObservable();
+  }
+  setVendor(vendor: String){
+    this.vendor.next(vendor);
+  }
+  getVendor(){
+    return this.vendor.asObservable();
+  }
+
+
 }

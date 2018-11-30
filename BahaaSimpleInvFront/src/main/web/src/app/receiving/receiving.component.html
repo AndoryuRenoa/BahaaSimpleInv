@@ -1,33 +1,43 @@
-<a [routerLink] = "['/']">
-  <h5 style = 'text-align: center'> Return to Main Menu </h5> 
-</a>
-
+<div class='mobileScale'>
 <div class = 'formStyle'>
-<div *ngIf ="unableToSendMessage;"><h1>An unexpected error has occured</h1></div>
+<div *ngIf ="unableToSendMessage;"><h1>Recorded</h1></div>
+<div *ngIf ="messageSent && !unableToSendMessage"><h1>Recorded</h1></div>
 
 <div *ngIf ="!loggedIn;"> 
   <h2> Please input </h2>
-  <form #messageForm= "ngForm" (ngSubmit)="sendMessage()" [formGroup]="messageFormNotLoggedIn">
+  <form #thisForm= "ngForm" (ngSubmit)="sendMessage(); resetFormLite();" [formGroup]="messageFormNotLoggedIn">
+      Vendor: <p></p>
+      <div *ngIf="submitted && fnli.vendor.errors?.required" class="redError">**Vendor Required**</div>
+      <input  type="text" formControlName="vendor" class="form-control" value={{vendorInput}}>
+      Invoice Number: <p></p>
+      <div *ngIf="submitted && fnli.quantity.errors?.required" class="redError">**Invoice Number Required**</div>
+      <input  type="text" formControlName="invoiceNumber" class="form-control">
+      <div style = "text-align: center">
+        <div *ngIf="submitted && missingUnitSelection" class ="redError"> **Select Unit Type</div>
+        <div *ngIf="!caseSelected" class="styleButton" (click)="selectCase()"> Case</div>
+        <div *ngIf="caseSelected" class="selectedButton" (click)="selectCase()"> Case</div>
+        <div *ngIf= "!eachSelected" class="styleButton"(click)="selectSingle()"> Each</div>
+        <div *ngIf= "eachSelected" class="selectedButton" (click)="selectSingle()"> Each</div>
+      </div>
+      <br>
+      Quantity: <p></p>
+      <div *ngIf="submitted && fnli.quantity.errors?.required" class="redError">**Quantity Required**</div>
+      <input  type="text" formControlName="quantity" class="form-control" id="quantity">
+      <p></p>
+      Vendor Item Number (Optional): <p></p>
+      <div *ngIf="submitted && fnli.itemVendNo.errors?.required" class="redError">**Item Vendor Number Required**</div>
+      <input  type="text" formControlName="itemVendNo" class="form-control">
       Barcode: <p></p>
       <div *ngIf="submitted && fnli.barcode.errors?.required" class="redError">**Barcode Required**</div>
       <input  type="text" formControlName="barcode" class="form-control">  
       <p></p>
-      Vednor: <p></p>
-      <div *ngIf="submitted && fnli.vendor.errors?.required" class="redError">**Vendor Required**</div>
-      <input  type="text" formControlName="vendor" class="form-control">
-      Item Vendor Number: <p></p>
-      <div *ngIf="submitted && fnli.itemVendNo.errors?.required" class="redError">**Item Vendor Number Required**</div>
-      <input  type="text" formControlName="itemVendNo" class="form-control">
-      
-      Quantity: <p></p>
-      <div *ngIf="submitted && fnli.quantity.errors?.required" class="redError">**Quantity Required**</div>
-      <input  type="text" formControlName="quantity" class="form-control"> 
-      Cost: <p></p>
-      <div *ngIf="submitted && fnli.cost.errors?.required" class="redError">**Cost Required**</div>
-      <input  type="text" formControlName="cost" class="form-control">     
-      
-      <p></p>
-      <button type="submit"> Send Message </button>
+      <button type="submit"> Submit Received </button>
   </form>
+  <p></p>
+  <p></p>
+  <a [routerLink] = "['/']">
+    <button > Return to Main Menu </button> 
+  </a>
+</div>
 </div>
 </div>

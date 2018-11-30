@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {ShowLoginService} from './show-login.service';
-import {ShowLogoutService} from './show-logout.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Config } from 'protractor';
 import { Router } from '@angular/router';
 
@@ -15,6 +12,8 @@ export class PrintReportService {
 
 
   requestReport(){
-    this.http.get('/test/user')
+    this.http.get('/api/printReport', {headers: new HttpHeaders(), responseType: 'text' as 'text'}).subscribe((res) =>{  
+      console.log(res);
+    });
   }
 }

@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
   }
 
   printReport(){
+    console.log("attempting to print");
     this.report.requestReport();
   }
 
