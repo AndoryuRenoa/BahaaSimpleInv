@@ -1,0 +1,24 @@
+<div class='mobileScale'>
+  <div class = 'formStyle'>
+  
+  <div *ngIf ="!loggedIn;"> 
+    <h2> Please input </h2>
+    <div *ngIf="result!=null">Barcode query result: {{result}}
+      <p></p>
+    </div>
+    <form #thisForm= "ngForm" (ngSubmit)="sendMessage(); resetFormLite();" [formGroup]="messageFormNotLoggedIn">
+        Barcode: <p></p>
+        <div *ngIf="submitted && fnli.barcode.errors?.required" class="redError">**Barcode Required**</div>
+        <input  type="text" formControlName="barcode" class="form-control">  
+        <p></p>
+        <button type="submit"> Look up item </button>
+    </form>
+    <p></p>
+    <p></p>
+    <a [routerLink] = "['/']">
+      <button > Return to Main Menu </button> 
+    </a>
+  </div>
+  </div>
+  </div>
+  

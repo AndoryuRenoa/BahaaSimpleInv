@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PrintReportService} from '../print-report.service';
+import {IsReceivingStartedService} from '../is-receiving-started.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,15 +8,27 @@ import {PrintReportService} from '../print-report.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  isReceivingStarted: boolean = false;
 
-  constructor(private report: PrintReportService) { }
+
+  constructor(private report: PrintReportService, private isReceiving : IsReceivingStartedService ) { }
 
   ngOnInit() {
+    this.isReceivingStarted=this.isReceiving.receivingStarted
   }
 
   printReport(){
-    console.log("attempting to print");
-    this.report.requestReport();
+    if(confirm("Are you sure you are ready to finalize the receiving report?")){
+      console.log("attempting to print");
+      this.report.requestReport();
+      this.isReceiving.receivingStarted=false;
+      this.isReceivingStarted=false;  
+    }
+  }
+  startReceiving(){
+    this.isReceiving.receivingStarted=true;
+    this.isReceiving.goToReceiving();
+
   }
 
 }
