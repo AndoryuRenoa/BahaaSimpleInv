@@ -9,8 +9,23 @@
     <form #thisForm= "ngForm" (ngSubmit)="sendMessage(); resetFormLite();" [formGroup]="messageFormNotLoggedIn">
         Barcode: <p></p>
         <div *ngIf="submitted && fnli.barcode.errors?.required" class="redError">**Barcode Required**</div>
-        <input  type="text" formControlName="barcode" class="form-control">  
+        <input  type="text" formControlName="barcode" class="form-control" id="bcInput">  
         <p></p>
+        <div *ngIf="result!=null && result!='Item not found'">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+          <div *ngIf="result!=null && result!='Item not found'" class="styleButton" (click)="continue()">
+            Input Receiving Information
+          </div>
+          <div *ngIf="result!=null && result!='Item not found'">
+              <p></p>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
         <button type="submit"> Look up item </button>
     </form>
     <p></p>

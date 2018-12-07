@@ -24,13 +24,11 @@ export class MessangerService {
     .subscribe((res) =>{
     console.log('attempting to send '+message as 'JSON');  
     console.log(res);
-    if (!(res == "success!")){
+    this.setMessageSent(true);
+    this.setSubmitted(false);
+    },
+    (error)=>{
       this.setUnableToSendMessage(true);
-    } else{
-      this.setMessageSent(true);
-      this.setSubmitted(false);
-      this.router.navigate(['/']);
-    }
     });
     this.setMessageSent(true);
     this.setSubmitted(false);

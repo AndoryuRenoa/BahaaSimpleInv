@@ -1,16 +1,17 @@
 <div class='mobileScale'>
 <div class = 'formStyle'>
-<div *ngIf ="unableToSendMessage;"><h1>Recorded</h1></div>
+<div *ngIf ="unableToSendMessage;" ><h1 style= "color: red">Error Detected Not Recorded</h1></div>
 <div *ngIf ="messageSent && !unableToSendMessage"><h1>Recorded</h1></div>
 
 <div *ngIf ="!loggedIn;"> 
   <h2> Please input </h2>
-  <form #thisForm= "ngForm" (ngSubmit)="sendMessage(); resetFormLite();" [formGroup]="messageFormNotLoggedIn">
+  <div style="text-align: right">Singles: {{numofSingles}} / Cases: {{numofCases}}</div>
+  <form #thisForm= "ngForm" (ngSubmit)="sendMessage();" [formGroup]="messageFormNotLoggedIn">
       Vendor: <p></p>
       <div *ngIf="submitted && fnli.vendor.errors?.required" class="redError">**Vendor Required**</div>
       <input  type="text" formControlName="vendor" class="form-control" value={{vendorInput}}>
       Invoice Number: <p></p>
-      <div *ngIf="submitted && fnli.quantity.errors?.required" class="redError">**Invoice Number Required**</div>
+      <div *ngIf="submitted && fnli.invoiceNumber.errors?.required" class="redError">**Invoice Number Required**</div>
       <input  type="text" formControlName="invoiceNumber" class="form-control">
       <div style = "text-align: center">
         <div *ngIf="submitted && missingUnitSelection" class ="redError"> **Select Unit Type</div>
@@ -22,6 +23,7 @@
       <br>
       Quantity: <p></p>
       <div *ngIf="submitted && fnli.quantity.errors?.required" class="redError">**Quantity Required**</div>
+      <div *ngIf="submitted && fnli.quantity.errors?.pattern" class="redError">**Quantity Must be a number**</div>
       <input  type="text" formControlName="quantity" class="form-control" id="quantity">
       <p></p>
       Vendor Item Number (Optional): <p></p>

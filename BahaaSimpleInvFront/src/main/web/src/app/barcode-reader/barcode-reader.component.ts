@@ -11,7 +11,8 @@ export class BarcodeReaderComponent implements OnInit {
   private unableToSendMessage: boolean = false;
   submitted : boolean = false;
   messageSent : boolean = false;
-  result : String;
+  lastbcSent: String;
+  item: String
 
   messageFormNotLoggedIn: FormGroup;
 
@@ -26,13 +27,17 @@ export class BarcodeReaderComponent implements OnInit {
     this.messangerService.getUnableToSendMessage().subscribe(res => this.unableToSendMessage = res);
     this.messangerService.getMessageSent().subscribe(res => this.messageSent = res);
     this.messangerService.getSubmitted().subscribe(res => this.submitted = res);
-    this.messangerService.getResult().subscribe(res=> this.result = res);
+    this.messangerService.getItem().subscribe(res=> this.item = res);
+  }
+  ngAfterViewInit(){
+    this.focusTo("bcInput");
   }
 
   get fnli(){ return this.messageFormNotLoggedIn.controls}
 
   sendMessage(){
     this.messangerService.setSubmitted(true);
+    this.lastbcSent = this.fnli.barcode.value;
     this.message = { 
       barcode: this.fnli.barcode.value,
     } 
@@ -44,6 +49,16 @@ export class BarcodeReaderComponent implements OnInit {
 
   resetFormLite(){
     this.messageFormNotLoggedIn.controls['barcode'].setValue(null);
+    this.focusTo("bcInput");
   }
+
+  focusTo(idName: string):void {
+    let element = document.getElementById(idName);
+    element.focus();
+ }
+
+ continue(){
+   console.log("continue pressed")
+ }
 
 }
