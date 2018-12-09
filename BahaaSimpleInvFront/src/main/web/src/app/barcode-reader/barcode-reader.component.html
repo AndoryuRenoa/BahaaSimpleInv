@@ -3,7 +3,20 @@
   
   <div *ngIf ="!loggedIn;"> 
     <h2> Please input </h2>
-    <div *ngIf="result!=null">Barcode query result: {{result}}
+    <div style="text-align: right">Singles: {{numofSingles}} / Cases: {{numofCases}}</div>
+    <div *ngIf="item !=null" class="redError">Error
+        <p></p>
+      </div>
+    <div *ngIf="bcResult!=null">Barcode query result:
+      <div>Item Name : {{bcResult.item}}</div>
+      <div *ngIf="bcResult.availableInventory<=6; else greaterThan" style ="color:green; text-emphasis: bold;">
+        Current Quantity: {{bcResult.availableInventory}}
+      </div>
+      <ng-template #greaterThan style="color:red; text-emphasis: bold;"><div>Current Quantity: {{bcResult.availableInventory}}</div></ng-template>
+      <div style ="color:green; text-emphasis: bold;">Last Cost : {{bcResult.lastCost}}</div>
+      <div style = "text-emphasis: bold;">Unit Type : {{bcResult.unitType}}</div>
+      <div style ="text-emphasis: bold;">Unit Multiplier : {{bcResult.unitMultiplier}}</div>
+      <div></div>
       <p></p>
     </div>
     <form #thisForm= "ngForm" (ngSubmit)="sendMessage(); resetFormLite();" [formGroup]="messageFormNotLoggedIn">
@@ -17,15 +30,13 @@
             <p></p>
             <p></p>
           </div>
-          <div *ngIf="result!=null && result!='Item not found'" class="styleButton" (click)="continue()">
+          <div *ngIf="bcResult!=null && bcResult.item!='Item not found'" style="text-align: center">
+            <div class="styleButton" (click)="continue()">
             Input Receiving Information
           </div>
-          <div *ngIf="result!=null && result!='Item not found'">
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-            </div>
+            <p></p>
+            <p></p>
+          </div>
         <button type="submit"> Look up item </button>
     </form>
     <p></p>

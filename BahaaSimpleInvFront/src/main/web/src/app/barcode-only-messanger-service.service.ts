@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Subject, BehaviorSubject } from "rxjs";
 import { Router } from '@angular/router';
 import { Config } from 'protractor';
+import {Barcode} from './barcode';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,9 @@ export class BarcodeOnlyMessangerServiceService {
   private lastCost = new BehaviorSubject<Number>(null);
   private availableInventory = new BehaviorSubject <Number>(null);
 	private unitType = new BehaviorSubject <String>(null);
-	private unitMultiplier = new BehaviorSubject<Number>(null);
-  
+  private unitMultiplier = new BehaviorSubject<Number>(null);
+  private barcode = new BehaviorSubject <String> (null);
+  private barcodeResult = new BehaviorSubject <Barcode>(null);
   
 
   constructor(private http : HttpClient, private router: Router) { }
@@ -25,12 +27,9 @@ export class BarcodeOnlyMessangerServiceService {
   attemptSendMessage(message, callback){
 
     this.http.post(this.messageURL, message, {headers: new HttpHeaders()})
-    .subscribe( (data:Config) =>{
-      this.setItem(data['item']);
-      this.setLastCost(data['lastCost']);
-      this.setAvailableInventory(data['availableInventory']);
-      this.setUnitType(data['unitType']);
-      this.setUnitMultiplier(data['unitMultiplier']);
+    .subscribe( (data: Barcode) =>{
+      this.barcodeResult.next(data);
+      console.log(data.itemNo);
       },
       (error)=>{
         this.setItem("error sending message");
@@ -41,6 +40,14 @@ export class BarcodeOnlyMessangerServiceService {
 
     return callback && callback();
 
+  }
+
+  setBarcodeResultToNull(){
+    this.barcodeResult.next(null);
+  }
+
+  getBarcodeResult(){
+    return this.barcodeResult.asObservable();
   }
 
 
@@ -97,5 +104,11 @@ export class BarcodeOnlyMessangerServiceService {
 	}
 	setUnitMultiplier(unitMultiplier: Number) {
 		this.unitMultiplier.next(unitMultiplier);
-	}
+  }
+  getBarcode(){
+    return this.barcode.asObservable();
+  }
+  setBarcode(bc : String){
+    this.barcode.next(bc);
+  }
 }

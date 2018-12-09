@@ -9,14 +9,14 @@
   <form #thisForm= "ngForm" (ngSubmit)="sendMessage();" [formGroup]="messageFormNotLoggedIn">
       Vendor: <p></p>
       <div *ngIf="submitted && fnli.vendor.errors?.required" class="redError">**Vendor Required**</div>
-      <input  type="text" formControlName="vendor" class="form-control" value={{vendorInput}}>
+      <input  type="text" formControlName="vendor" class="form-control" value={{vendor.name}} readonly>
       Invoice Number: <p></p>
       <div *ngIf="submitted && fnli.invoiceNumber.errors?.required" class="redError">**Invoice Number Required**</div>
-      <input  type="text" formControlName="invoiceNumber" class="form-control">
+      <input  type="text" formControlName="invoiceNumber" class="form-control" value={{invoiceNumber}} readonly>
       <div style = "text-align: center">
         <div *ngIf="submitted && missingUnitSelection" class ="redError"> **Select Unit Type</div>
-        <div *ngIf="!caseSelected" class="styleButton" (click)="selectCase()"> Case</div>
-        <div *ngIf="caseSelected" class="selectedButton" (click)="selectCase()"> Case</div>
+        <div *ngIf="!caseSelected" class="styleButton" (click)="selectCase()"> Case : {{barcodeResult.unitMultiplier}}</div>
+        <div *ngIf="caseSelected" class="selectedButton" (click)="selectCase()"> Case : {{barcodeResult.unitMultiplier}}</div>
         <div *ngIf= "!eachSelected" class="styleButton"(click)="selectSingle()"> Each</div>
         <div *ngIf= "eachSelected" class="selectedButton" (click)="selectSingle()"> Each</div>
       </div>
@@ -26,14 +26,13 @@
       <div *ngIf="submitted && fnli.quantity.errors?.pattern" class="redError">**Quantity Must be a number**</div>
       <input  type="text" formControlName="quantity" class="form-control" id="quantity">
       <p></p>
-      Vendor Item Number (Optional): <p></p>
-      <div *ngIf="submitted && fnli.itemVendNo.errors?.required" class="redError">**Item Vendor Number Required**</div>
-      <input  type="text" formControlName="itemVendNo" class="form-control">
       Barcode: <p></p>
       <div *ngIf="submitted && fnli.barcode.errors?.required" class="redError">**Barcode Required**</div>
-      <input  type="text" formControlName="barcode" class="form-control">  
+      <input  type="text" formControlName="barcode" class="form-control" value = {{barcode}} readonly>  
       <p></p>
-      <button type="submit"> Submit Received </button>
+      <div style = "text-align: center">
+      <button class="largeButton" type="submit"> Submit Received </button>
+      </div>
   </form>
   <p></p>
   <p></p>

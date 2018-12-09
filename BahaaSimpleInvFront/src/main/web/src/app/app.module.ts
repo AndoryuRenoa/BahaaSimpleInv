@@ -9,12 +9,14 @@ import { TopComponent } from './top/top.component';
 import { MenuComponent } from './menu/menu.component';
 import { ReceivingComponent } from './receiving/receiving.component';
 import { BarcodeReaderComponent } from './barcode-reader/barcode-reader.component';
+import { VendorsComponent } from './vendors/vendors.component';
 
 const appRoutes: Routes = [
   {path: 'mainmenu', component: MenuComponent},
   {path: '',   redirectTo: '/mainmenu', pathMatch: 'full' },
   {path: 'receiving', component: ReceivingComponent},
-  {path: 'reader', component: BarcodeReaderComponent}
+  {path: 'reader', component: BarcodeReaderComponent},
+  {path: 'vendors', component: VendorsComponent}
 ];
 
 @NgModule({
@@ -23,7 +25,8 @@ const appRoutes: Routes = [
     TopComponent,
     MenuComponent,
     ReceivingComponent,
-    BarcodeReaderComponent
+    BarcodeReaderComponent,
+    VendorsComponent
   ],
   imports: [
     BrowserModule,

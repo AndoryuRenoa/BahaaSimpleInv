@@ -1,34 +1,10 @@
 <div> 
     <div class ="container" >
-        <div class="selector" id="selector"> 
-          <div class= "selectorimg" id="selectorimg" ></div>
-        </div>
-        <div class="option1" id="option1">
-          <a [routerLink]="['/reader']">          
-          <div  style="float: right;
-            background-color: rgb(49, 54, 49);
-            border: none;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 40x;
-            margin: 4px 2px;
-            cursor: pointer;">
-            Barcode Reader
-           </div>
-            </a>
-          </div>
-        <div class = "right"> 
-      </div>
-    </div>
-    <div class ="container" >
       <div class="selector" id="selector"> 
         <div class= "selectorimg" id="selectorimg" ></div>
       </div>
       <div class="option1" id="option1">
-        <div style = "text-align: right; cursor: pointer; color:black;"  (click)= "startReceiving()">           
+        <div style = "text-align: right; cursor: pointer; color:black;"  >           
         <div *ngIf="!isReceivingStarted"  style="float: right;
           background-color: rgb(49, 54, 49);
           border: none;
@@ -39,7 +15,7 @@
           display: inline-block;
           font-size: 40x;
           margin: 4px 2px;
-          cursor: pointer;">
+          cursor: pointer;" (click)= "startReceiving()">
           Start Receiving
          </div>
          <div *ngIf="isReceivingStarted"  style="float: right;
@@ -52,7 +28,7 @@
           display: inline-block;
           font-size: 40x;
           margin: 4px 2px;
-          cursor: pointer;">
+          cursor: pointer;" (click)= "continueReceiving()">
           Continue Receiving
          </div>
         </div>

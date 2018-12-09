@@ -1,0 +1,27 @@
+<div class='mobileScale'>
+    <div class = 'formStyle'>   
+    <div *ngIf ="!loggedIn;"> 
+      <h2> Choose Vendor For Receiving </h2>
+      <div *ngIf="nothingSelected" class= "redError">
+        *Must Select a valid vendor*
+      </div>
+          <select [(ngModel)]="selectedOption" (click) = "print()">
+            <option [ngValue] = "placeHolder">{{placeHolder.name}}</option>
+            <option *ngFor ="let vendor of listOfVendors" [ngValue]="vendor">
+              {{vendor.name}}
+            </option>
+          </select>
+          <p>Input Invoice Number</p>
+          <form (click) = "print()">
+            <input [(ngModel)]="invoiceInput" [ngModelOptions]="{standalone: true}" type="text">
+          </form>
+          <button (click)="continue()"> Select Vendor </button>
+      <p></p>
+      <p></p>
+      <a [routerLink] = "['/']">
+        <button > Return to Main Menu </button> 
+      </a>
+    </div>
+    </div>
+    </div>
+    
