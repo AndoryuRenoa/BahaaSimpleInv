@@ -15,7 +15,11 @@ public class Inventory {
     private String vendor;
     private int quantity;
     private String itemVendNo;
-    private double cost;
+    private String invoiceNumber;
+    private double lastCost;
+    private String itemNo;
+    
+   
 
     
 	public Long getId() {
@@ -42,6 +46,14 @@ public class Inventory {
 		this.vendor = vendor;
 	}
 
+	public String getInvoiceNumber() {
+		return invoiceNumber;
+	}
+
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -58,12 +70,22 @@ public class Inventory {
 		this.itemVendNo = itemVendNo;
 	}
 
-	public double getCost() {
-		return cost;
+	public double getLastCost() {
+		return lastCost;
 	}
 
-	public void setCost(double cost) {
-		this.cost = cost;
+	public void setLastCost(double lastCost) {
+		this.lastCost = lastCost;
 	}
+
+	public String getItemNo() {
+		return itemNo;
+	}
+
+	public void setItemNo(String itemNo) {
+		this.itemNo = itemNo;
+	}
+
+
 }
 
