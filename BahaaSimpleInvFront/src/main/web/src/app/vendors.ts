@@ -1,4 +1,4 @@
 export interface Vendors {
-    name: string,
-    vendorNo: string
+    name: String,
+    vendorNo: String
 }

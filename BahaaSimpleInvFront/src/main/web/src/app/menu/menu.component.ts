@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {PrintReportService} from '../print-report.service';
-import {IsReceivingStartedService} from '../is-receiving-started.service';
+import {IsStartedService} from '../is-started.service';
 import {GetVendorsService} from '../get-vendors.service';
 import { Router } from '@angular/router';
 import {RecordCasesService} from '../record-cases.service';
@@ -13,15 +13,15 @@ import {BarcodeOnlyMessangerServiceService} from '../barcode-only-messanger-serv
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  isReceivingStarted: boolean = false;
+  isReceivingStarted: Boolean = false;
 
 
-  constructor(private report: PrintReportService, private isReceiving : IsReceivingStartedService,
+  constructor(private report: PrintReportService, private isReceiving : IsStartedService,
     private getVendors:GetVendorsService, private router: Router, private recordCases: RecordCasesService, 
     private recordSingles: RecordSinglesService, private barcodeService: BarcodeOnlyMessangerServiceService ) { }
 
   ngOnInit() {
-    this.isReceivingStarted=this.isReceiving.receivingStarted
+    this.isReceiving.getFromServer().subscribe(res => this.isReceivingStarted = res);
     this.getVendors.getFromServer();
   }
 
@@ -33,12 +33,11 @@ export class MenuComponent implements OnInit {
       this.recordCases.setNumberofCases(0);
       this.recordSingles.setNumberofSingles(0);
       this.barcodeService.setBarcodeResultToNull();
-      this.isReceiving.receivingStarted=false;
-      this.isReceivingStarted=false;  
+      this.isReceiving.setToServer(false); 
     }
   }
   startReceiving(){
-    this.isReceiving.receivingStarted=true;
+    this.isReceiving.setToServer(true);
     this.router.navigateByUrl("vendors");
 
   }

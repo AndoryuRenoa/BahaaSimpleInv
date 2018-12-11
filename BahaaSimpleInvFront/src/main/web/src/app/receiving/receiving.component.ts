@@ -59,6 +59,10 @@ export class ReceivingComponent implements OnInit {
     this.recordSingles.getNumberofSinglesAsObservable().subscribe(res=> this.numofSingles = res);
     this.recordSingles.setObservable();
     this.barcodeService.getBarcodeResult().subscribe(res => this.barcodeResult = res);
+    this.vendorService.getCurrentVendor();
+    if (this.vendor.vendorNo == null){
+      alert("The device that started this session never set the vendor for this session!");
+    }
   }
 
   get fnli(){ return this.messageFormNotLoggedIn.controls}

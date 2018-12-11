@@ -7,15 +7,22 @@
     <div *ngIf="item !=null" class="redError">Error
         <p></p>
       </div>
-    <div *ngIf="bcResult!=null">Barcode query result:
+    <div *ngIf="bcResult!=null" style ="text-emphasis: bold;
+    font: 20px Arial, Helvetica, sans-serif;">Barcode query result:
       <div>Item Name : {{bcResult.item}}</div>
-      <div *ngIf="bcResult.availableInventory<=6; else greaterThan" style ="color:green; text-emphasis: bold;">
+      <div *ngIf="bcResult.availableInventory<=6; else greaterThan" style ="color:green; text-emphasis: bold;
+      font: 20px Arial, Helvetica, sans-serif;">
         Current Quantity: {{bcResult.availableInventory}}
       </div>
-      <ng-template #greaterThan style="color:red; text-emphasis: bold;"><div>Current Quantity: {{bcResult.availableInventory}}</div></ng-template>
-      <div style ="color:green; text-emphasis: bold;">Last Cost : {{bcResult.lastCost}}</div>
-      <div style = "text-emphasis: bold;">Unit Type : {{bcResult.unitType}}</div>
-      <div style ="text-emphasis: bold;">Unit Multiplier : {{bcResult.unitMultiplier}}</div>
+      <ng-template #greaterThan style="color:red; text-emphasis: bold;
+      font: 20px Arial, Helvetica, sans-serif;"
+      ><div>Current Quantity: {{bcResult.availableInventory}}</div></ng-template>
+      <div style ="color:green; text-emphasis: bold;
+      font: 20px Arial, Helvetica, sans-serif;">Last Cost : {{bcResult.lastCost}}</div>
+      <div style = "color: blue; text-emphasis: bold;
+      font: 20px Arial, Helvetica, sans-serif;">Unit Type : {{bcResult.unitType}}</div>
+      <div style ="color: blue;text-emphasis: bold;
+      font: 20px Arial, Helvetica, sans-serif;">Unit Multiplier : {{bcResult.unitMultiplier}}</div>
       <div></div>
       <p></p>
     </div>

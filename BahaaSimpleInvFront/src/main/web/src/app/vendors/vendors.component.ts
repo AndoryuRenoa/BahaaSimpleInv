@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { GetVendorsService} from '../get-vendors.service';
 import {Vendors} from '../vendors';
 
+
 @Component({
   selector: 'app-vendors',
   templateUrl: './vendors.component.html',
@@ -15,6 +16,7 @@ export class VendorsComponent implements OnInit {
   nothingSelected : boolean = false;  
   invoiceInput: string;
 
+
   constructor(private getVendors: GetVendorsService,  private router: Router) { }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class VendorsComponent implements OnInit {
     if (this.selectedOption.vendorNo != null && this.invoiceInput != null){
       this.getVendors.setSelectedVendor(this.selectedOption);
       this.getVendors.setInvoiceNumber(this.invoiceInput);
+      this.getVendors.setCurrentVendor();
       this.router.navigateByUrl("reader");
     } else{
       this.nothingSelected = true;
