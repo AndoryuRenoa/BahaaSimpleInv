@@ -37,8 +37,8 @@ public class ApiController {
 	CurrentVendorRepo currentVendorRepo;
 	
 	
-	CSVWriter csvWriter = new CSVWriter();
-	String vendor;
+	private CSVWriter csvWriter = new CSVWriter();
+	private String vendor;
 	
 	@PostMapping (path="/barcode")
 	public @ResponseBody String readBarcode(@RequestBody Barcode barcode) {
