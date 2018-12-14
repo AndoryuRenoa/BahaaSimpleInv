@@ -12,7 +12,7 @@ import {Vendors} from '../vendors';
 export class VendorsComponent implements OnInit {
   listOfVendors : Vendors[];
   selectedOption : Vendors;
-  placeHolder: Vendors = {name:"please select vendor", vendorNo: null} as Vendors;
+  placeHolder: Vendors = {name:"Please select vendor", vendorNo: null} as Vendors;
   nothingSelected : boolean = false;  
   invoiceInput: string;
 

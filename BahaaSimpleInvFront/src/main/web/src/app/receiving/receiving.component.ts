@@ -30,6 +30,7 @@ export class ReceivingComponent implements OnInit {
   caseSize: String;
   invoiceNumber: String;
   barcodeResult : Barcode;
+  lasCost: Number;
 
 
   messageFormNotLoggedIn: FormGroup;
@@ -83,7 +84,7 @@ export class ReceivingComponent implements OnInit {
           vendor: this.vendor.name,
           quantity: multipliedQuant,
           invoiceNumber: this.invoiceNumber,
-          lastCost: this.barcodeResult.lasCost, 
+          lastCost: this.barcodeResult.lastCost, 
           itemNo: this.barcodeResult.itemNo    
         };
         this.recordCases.addToNumOfCases(this.fnli.quantity.value);
@@ -94,7 +95,7 @@ export class ReceivingComponent implements OnInit {
           vendor: this.vendor.name,
           quantity: this.fnli.quantity.value,
           invoiceNumber: this.invoiceNumber,
-          lastCost: this.barcodeResult.lasCost, 
+          lastCost: this.barcodeResult.lastCost, 
           itemNo: this.barcodeResult.itemNo
         };
         this.recordSingles.addToNumOfSingles(this.fnli.quantity.value);

@@ -10,21 +10,20 @@
     <div *ngIf="bcResult!=null" style ="text-emphasis: bold;
     font: 20px Arial, Helvetica, sans-serif;">Barcode query result:
       <div>Item Name : {{bcResult.item}}</div>
-      <div *ngIf="bcResult.availableInventory<=6; else greaterThan" style ="color:green; text-emphasis: bold;
+      <div *ngIf="bcResult.availableInventory>6; else lessThan" style ="color:red; text-emphasis: bold;
       font: 20px Arial, Helvetica, sans-serif;">
         Current Quantity: {{bcResult.availableInventory}}
       </div>
-      <ng-template #greaterThan style="color:red; text-emphasis: bold;
-      font: 20px Arial, Helvetica, sans-serif;"
-      ><div>Current Quantity: {{bcResult.availableInventory}}</div></ng-template>
+      <ng-template #lessThan><div style=" color:black; text-emphasis: bold;
+        font: 20px Arial, Helvetica, sans-serif;">Current Quantity: {{bcResult.availableInventory}}</div></ng-template>
+      <div style ="color: blue; text-emphasis: bold;
+      font: 20px Arial, Helvetica, sans-serif;">
+      Last Cost : {{bcResult.lastCost | currency : 'USD' }}</div>
+      <div style ="color:black; text-emphasis: bold;
+      font: 20px Arial, Helvetica, sans-serif;">Unit Type: {{bcResult.unitType}}</div>
       <div style ="color:green; text-emphasis: bold;
-      font: 20px Arial, Helvetica, sans-serif;">Last Cost : {{bcResult.lastCost}}</div>
-      <div style = "color: blue; text-emphasis: bold;
-      font: 20px Arial, Helvetica, sans-serif;">Unit Type : {{bcResult.unitType}}</div>
-      <div style ="color: blue;text-emphasis: bold;
-      font: 20px Arial, Helvetica, sans-serif;">Unit Multiplier : {{bcResult.unitMultiplier}}</div>
-      <div></div>
-      <p></p>
+      font: 20px Arial, Helvetica, sans-serif;">Last Received Date : {{bcResult.lastReceivedDate | date}}
+      </div>
     </div>
     <form #thisForm= "ngForm" (ngSubmit)="sendMessage(); resetFormLite();" [formGroup]="messageFormNotLoggedIn">
         Barcode: <p></p>
@@ -49,7 +48,8 @@
     <p></p>
     <p></p>
     <a [routerLink] = "['/']">
-      <button > Return to Main Menu </button> 
+      <button > Main Menu </button>
+ 
     </a>
   </div>
   </div>

@@ -1,9 +1,9 @@
 export interface Barcode {
     item: String,
-    lasCost: Number,
+    lastCost: Number,
     availableInventory: Number;
     unitType: String,
     lastReceivedDate: Date,
-    unitMultiplier: Number
-    itemNo: String,
+    unitMultiplier: Number,
+    itemNo: String
 }
